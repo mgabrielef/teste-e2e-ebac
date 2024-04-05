@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+const profile = require("../fixtures/profile.json")
 
 context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
   /*  Como cliente 
@@ -10,13 +11,17 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
       E validando minha compra ao final */
 
   beforeEach(() => {
-      cy.visit('/')
-  });
+    cy.visit('/')
+    cy.fixture('profile').then( data => {
+        cy.login(data.user, data.password)
+    })
+      
+  })
 
   it('Deve fazer um pedido na loja Ebac Shop de ponta a ponta', () => {
-      //TODO: Coloque todo o fluxo de teste aqui, considerando as boas práticas e otimizações
+    cy.searchProduct('Aether Gym Pant')    
       
-  });
+  })
 
 
 })
