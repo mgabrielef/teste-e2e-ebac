@@ -12,23 +12,25 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
 
   beforeEach(() => {
     cy.visit('/')
-    cy.fixture('profile').then(data=>{
-        cy.login(data.email, data.password)
+    cy.fixture('profile').then(profile=>{
+        cy.login(profile.email, profile.password)
         cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, marktest')
     })
     
   })
 
   it('Deve fazer um pedido na loja Ebac Shop de ponta a ponta', () => {
-    cy.fixture('products').then(data=>{
-      cy.searchProduct(data[0].productName)
-      cy.get('.product_title').should('contain', data[0].productName)
+    const products = require('../fixtures/products.json')
+    products.forEach(product=>{
+      cy.searchProduct(product.productName)
+      cy.get('.product_title').should('contain', product.productName)
       
-      cy.buyProduct(data[0].size, data[0].color, data[0].quantity)
-      cy.get('.woocommerce-message').should('contain', `${data[0].quantity} × “${data[0].productName}” foram adicionados no seu carrinho.`)
+      cy.buyProduct(product.size, product.color, product.quantity)
+      cy.get('.woocommerce-message').should('contain', `${product.quantity} × “${product.productName}” foram adicionados no seu carrinho.`)
     })
-    cy.fixture('profile').then(data=>{
-      cy.finishPurchase(data.firstName, data.lastName, data.address, data.city, data.postcode, data.phone)
+
+    cy.fixture('profile').then(profile=>{
+      cy.finishPurchase(profile.firstName, profile.lastName, profile.address, profile.city, profile.postcode, profile.phone)
       cy.get('.woocommerce-notice').should('contain', 'Obrigado. Seu pedido foi recebido.')
     })
   })

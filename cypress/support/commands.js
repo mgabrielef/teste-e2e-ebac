@@ -22,8 +22,8 @@ Cypress.Commands.add('buyProduct', (size, color, quantity)=>{
 Cypress.Commands.add('finishPurchase', (firstName, lastName, address, city, postcode, phone)=>{
     cy.visit('carrinho/')
     cy.get('.checkout-button').click()
-    cy.get('#billing_first_name').type(firstName)
-    cy.get('#billing_last_name').type(lastName)
+    cy.get('#billing_first_name').clear().type(firstName)
+    cy.get('#billing_last_name').clear().type(lastName)
     cy.get('#billing_address_1').clear().type(address)
     cy.get('#billing_city').clear().type(city)
     cy.get('#billing_postcode').clear().type(postcode)
