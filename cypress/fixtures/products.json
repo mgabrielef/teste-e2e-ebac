@@ -1,0 +1,27 @@
+[
+    {
+        "productName" : "Arcadio Gym Short",
+        "size" : "34",
+        "color" : "Black",
+        "quantity" : 4
+    },
+    {
+        "productName" : "Abominable Hoodie",
+        "size" : "XS",
+        "color" : "Green",
+        "quantity" : 2
+    },
+    {
+        "productName" : "Aether Gym Pant",
+        "size" : "33",
+        "color" : "Brown",
+        "quantity" : 3
+    },
+    {
+        "productName" : "Teton Pullover Hoodie",
+        "size" : "L",
+        "color" : "Black",
+        "quantity" : 1
+    }
+
+]
