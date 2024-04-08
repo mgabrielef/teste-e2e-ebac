@@ -13,7 +13,7 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
   beforeEach(() => {
     cy.visit('/')
     cy.fixture('profile').then(data=>{
-        cy.login(data.user, data.password)
+        cy.login(data.email, data.password)
         cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain', 'Olá, marktest')
     })
     
@@ -25,9 +25,12 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
       cy.get('.product_title').should('contain', data[0].productName)
       
       cy.buyProduct(data[0].size, data[0].color, data[0].quantity)
-      cy.get('.woocommerce-message').should('contain', data[0].quantity + ' × “' + data[0].productName + '” foram adicionados no seu carrinho.')
+      cy.get('.woocommerce-message').should('contain', `${data[0].quantity} × “${data[0].productName}” foram adicionados no seu carrinho.`)
+    })
+    cy.fixture('profile').then(data=>{
+      cy.finishPurchase(data.firstName, data.lastName, data.address, data.city, data.postcode, data.phone)
+      cy.get('.woocommerce-notice').should('contain', 'Obrigado. Seu pedido foi recebido.')
     })
   })
-
 
 })

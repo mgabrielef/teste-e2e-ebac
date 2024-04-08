@@ -1,4 +1,10 @@
 {
-  "user": "marktest@test.com",
-  "password": "marktest@123"
+  "email": "marktest@test.com",
+  "password": "marktest@123",
+  "firstName" : "Mark",
+  "lastName" : "Lee",
+  "address" : "Rua João de Oliveira Prado",
+  "city" : "Jundiaí",
+  "postcode" : "13219443",
+  "phone" : "(11) 997876856"
 }
